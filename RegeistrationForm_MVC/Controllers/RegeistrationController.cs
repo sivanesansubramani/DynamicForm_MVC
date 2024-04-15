@@ -33,19 +33,19 @@ namespace RegeistrationForm_MVC.Controllers
             //return View();
         }
 
-        [HttpGet("Countries")]
-        public IActionResult GetCountries()
-        {
-            var countries = FormData_obj.GetCountries();
-            return Ok(countries);
-        }
-
-        //[HttpGet("States")]
-        //public IActionResult GetStates(int countryId)
+        //[HttpGet("Countries")]
+        //public IActionResult GetCountries()
         //{
-        //    var states = _repository.GetStatesByCountryId(countryId);
-        //    return Ok(states);
+        //    var countries = FormData_obj.GetCountries();
+        //    return Ok(countries);
         //}
+
+         [HttpGet("States")]
+        public IActionResult GetStates(int countryId)
+        {
+            var states = FormData_obj.GetStatesByCountryId(/*countryId*/);
+            return Ok(states);
+        }
 
         //[HttpGet("Districts")]
         //public IActionResult GetDistricts(int stateId)

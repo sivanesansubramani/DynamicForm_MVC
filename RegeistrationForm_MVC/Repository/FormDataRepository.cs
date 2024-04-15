@@ -23,10 +23,12 @@ namespace RegeistrationForm_MVC.Repository
             return db.Query<Country>("SELECT * FROM State_M").ToList();
         }
 
-        public IEnumerable<State> GetStatesByCountryId(int countryId)
+        public IEnumerable<State> GetStatesByCountryId(/*int countryId*/)
         {
             using IDbConnection db = new SqlConnection(connectionString);
-            return db.Query<State>("SELECT * FROM States WHERE CountryId = @CountryId", new { CountryId = countryId }).ToList();
+            return db.Query<State>("SELECT * FROM States").ToList();
+
+            //return db.Query<State>("SELECT * FROM States WHERE CountryId = @CountryId", new { CountryId = countryId }).ToList();
         }
 
         public IEnumerable<District> GetDistrictsByStateId(int stateId)

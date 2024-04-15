@@ -22,6 +22,9 @@
             <option value="@country.StateId">@country.StateName</option>
         }
     </select>
+    <select id="stateDropdown">
+        <option value="">Select State</option>
+    </select>
 </form>
 
 
@@ -45,6 +48,44 @@
         <option value="">Select City</option>
     </select>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- JavaScript code -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Event handler for country dropdown change
+        $('#countryDropdown').change(function () {
+            var selectedCountryId = $(this).val();
+
+            // Clear state dropdown
+            $('#stateDropdown').empty().append($('<option>').val('').text('Select State'));
+
+            // Fetch states via AJAX
+            $.ajax({
+                url: '/Regeistration/GetStates', // Update the URL to match your controller action
+                type: 'GET',
+                //data: { countryId: selectedCountryId },
+                success: function (response) {
+                    // Populate state dropdown with fetched states
+                    $.each(response, function (index, state) {
+                        $('#stateDropdown').append($('<option>').val(state.StateId).text(state.StateName));
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 @*  @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
