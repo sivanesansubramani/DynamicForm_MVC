@@ -1,0 +1,130 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Welcome.........!</h1>
+
+@{
+    ViewData["Title"] = "Location Form";
+}
+
+<h1>Form view</h1>
+
+
+
+
+<form>
+    <select id="countryDropdown">
+        <option value="">Select Country</option>
+        @foreach (var country in Model)
+        {
+            <option value="@country.StateId">@country.StateName</option>
+        }
+    </select>
+</form>
+
+
+
+
+
+<form>
+    <select id="countryDropdown">
+        <option value="">Select Country</option>
+    </select>
+
+    <select id="stateDropdown">
+        <option value="">Select State</option>
+    </select>
+
+    <select id="districtDropdown">
+        <option value="">Select District</option>
+    </select>
+
+    <select id="cityDropdown">
+        <option value="">Select City</option>
+    </select>
+</form>
+
+@*  @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Load countries
+            $.ajax({
+                url: '/RegeistrationForm_MVC/GetCountries',
+                type: 'GET',
+                success: function (response) {
+                    $.each(response, function (index, country) {
+                        $('#countryDropdown').append($('<option>').val(country.Id).text(country.Name));
+                    });
+                }
+            });
+        }
+    </script>
+}
+    } *@
+        @*
+            // Handle country change event
+            $('#countryDropdown').change(function () {
+                var countryId = $(this).val();
+                $('#stateDropdown').empty().append($('<option>').val('').text('Select State'));
+                $('#districtDropdown').empty().append($('<option>').val('').text('Select District'));
+                $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
+
+                if (countryId) {
+                    // Load states
+                    $.ajax({
+                        url: '/Location/States?countryId=' + countryId,
+                        type: 'GET',
+                        success: function (response) {
+                            $.each(response, function (index, state) {
+                                $('#stateDropdown').append($('<option>').val(state.Id).text(state.Name));
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Handle state change event
+            $('#stateDropdown').change(function () {
+                var stateId = $(this).val();
+                $('#districtDropdown').empty().append($('<option>').val('').text('Select District'));
+                $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
+
+                if (stateId) {
+                    // Load districts
+                    $.ajax({
+                        url: '/Location/Districts?stateId=' + stateId,
+                        type: 'GET',
+                        success: function (response) {
+                            $.each(response, function (index, district) {
+                                $('#districtDropdown').append($('<option>').val(district.Id).text(district.Name));
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Handle district change event
+            $('#districtDropdown').change(function () {
+                var districtId = $(this).val();
+                $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
+
+                if (districtId) {
+                    // Load cities
+                    $.ajax({
+                        url: '/Location/Cities?districtId=' + districtId,
+                        type: 'GET',
+                        success: function (response) {
+                            $.each(response, function (index, city) {
+                                $('#cityDropdown').append($('<option>').val(city.Id).text(city.Name));
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+ *@

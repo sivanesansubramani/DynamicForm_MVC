@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RegeistrationForm_MVC.props" />
+</Project>
