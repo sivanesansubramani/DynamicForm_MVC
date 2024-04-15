@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DynamicForm_MVC.props" />
+</Project>
