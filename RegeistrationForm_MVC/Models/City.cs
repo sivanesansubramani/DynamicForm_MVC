@@ -2,8 +2,8 @@
 {
     public class City
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int CityId { get; set; }
+        public string Locality { get; set; }
         public int DistrictId { get; set; }
     }
 }

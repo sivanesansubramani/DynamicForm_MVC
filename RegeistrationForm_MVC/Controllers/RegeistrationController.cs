@@ -43,23 +43,28 @@ namespace RegeistrationForm_MVC.Controllers
          [HttpGet("States")]
         public IActionResult GetStates(int countryId)
         {
-            var states = FormData_obj.GetStatesByCountryId(/*countryId*/);
+            var states = FormData_obj.GetStatesByCountryId(countryId);
             return Ok(states);
         }
 
-        //[HttpGet("Districts")]
-        //public IActionResult GetDistricts(int stateId)
-        //{
-        //    var districts = _repository.GetDistrictsByStateId(stateId);
-        //    return Ok(districts);
-        //}
+        [HttpGet("Districts")]
+        public IActionResult GetDistricts(int stateId)
+        {
+            var districts = FormData_obj.GetDistrictsByStateId(stateId);
+            return Ok(districts);
+        }
 
-        //[HttpGet("Cities")]
-        //public IActionResult GetCities(int districtId)
-        //{
-        //    var cities = _repository.GetCitiesByDistrictId(districtId);
-        //    return Ok(cities);
-        //}
-
+        [HttpGet("cities")]
+        public IActionResult GetCities(int districtid)
+        {
+            var cities = FormData_obj.GetCitiesByDistrictId(districtid);
+            return Ok(cities);
+        }
+        [HttpGet("university")]
+        public IActionResult Getuniversity(int countryId)
+        {
+            var cities = FormData_obj.GetUniversity(countryId);
+            return Ok(cities);
+        }
     }
 }

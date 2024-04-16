@@ -11,42 +11,58 @@
 
 <h1>Form view</h1>
 
+@* 
 
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br /> *@
 
 
 <form>
+    <label for="countryDropdown">Country</label>
     <select id="countryDropdown">
         <option value="">Select Country</option>
         @foreach (var country in Model)
         {
-            <option value="@country.StateId">@country.StateName</option>
+            <option value="@country.CountryCode">@country.CountryName</option>
         }
     </select>
+    <br />
+    <br />
+    <br />
+    <label for="stateDropdown">State</label>
     <select id="stateDropdown">
         <option value="">Select State</option>
     </select>
-</form>
-
-
-
-
-
-<form>
-    <select id="countryDropdown">
-        <option value="">Select Country</option>
-    </select>
-
-    <select id="stateDropdown">
-        <option value="">Select State</option>
-    </select>
-
+    <br />
+    <br />
+    <br />
+    <label for="districtDropdown">district</label>
     <select id="districtDropdown">
-        <option value="">Select District</option>
+        <option value="">Select district</option>
     </select>
-
+    <br />
+    <br />
+    <br />
+    <label for="cityDropdown">City</label>
     <select id="cityDropdown">
         <option value="">Select City</option>
     </select>
+    <br />
+    <br />
+    <br />
+    <label for="universityDropdown">University</label>
+    <select id="universityDropdown">
+        <option value="">Select University</option>
+    </select>
 </form>
 
 
@@ -54,12 +70,102 @@
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#countryDropdown').change(function () {
+            var selectedCountryId = $(this).val();
+
+            $('#stateDropdown').empty().append($('<option>').val('').text('Select State'));
+
+            $.ajax({
+                url: '/States',
+                type: 'GET',
+                data: { countryId: selectedCountryId },
+                success: function (response) {
+                    $.each(response, function (index, state) {
+                        $('#stateDropdown').append($('<option>').val(state.stateId).text(state.stateName));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); 
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#stateDropdown').change(function () {
+            var selectedStateId = $(this).val();
+
+            $('#districtDropdown').empty().append($('<option>').val('').text('Select District'));
+
+            $.ajax({
+                url: '/Districts', 
+                type: 'GET',
+                data: { stateId: selectedStateId },
+                success: function (response) {
+                    $.each(response, function (index, district) {
+                        $('#districtDropdown').append($('<option>').val(district.districtId).text(district.districtName));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); 
+                }
+            });
+        });
+
+        $('#districtDropdown').change(function () {
+            var selectedDistrictId = $(this).val();
+
+            $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
+
+            $.ajax({
+                url: '/cities', 
+                type: 'GET',
+                data: { districtId: selectedDistrictId },
+                success: function (response) {
+                    $.each(response, function (index, city) {
+                        $('#cityDropdown').append($('<option>').val(city.cityId).text(city.locality));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); 
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#countryDropdown').change(function () {
+            var selectedCountryId = $(this).val();
+
+            $('#universityDropdown').empty().append($('<option>').val('').text('Select University'));
+
+            $.ajax({
+                url: '/University', 
+                type: 'GET',
+                data: { countryId: selectedCountryId },
+                success: function (response) {
+                    $.each(response, function (index, university) {
+                        $('#universityDropdown').append($('<option>').val(university.universityId).text(university.name));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); 
+                }
+            });
+        });
+    });
 
 
 
 
+</script>
 
 
+
+@* 
 <!-- JavaScript code -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -73,9 +179,9 @@
 
             // Fetch states via AJAX
             $.ajax({
-                url: '/Regeistration/GetStates', // Update the URL to match your controller action
+                url: '/RegeistrationController/GetStates', // Update the URL to match your controller action
                 type: 'GET',
-                //data: { countryId: selectedCountryId },
+                data: { countryId: selectedCountryId },
                 success: function (response) {
                     // Populate state dropdown with fetched states
                     $.each(response, function (index, state) {
@@ -85,7 +191,7 @@
             });
         });
     });
-</script>
+</script> *@
 
 @*  @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
