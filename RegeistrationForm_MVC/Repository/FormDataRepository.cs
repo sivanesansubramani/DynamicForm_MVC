@@ -51,6 +51,29 @@ namespace RegeistrationForm_MVC.Repository
             using IDbConnection db = new SqlConnection(connectionString);
             return db.Query<UnivericityModel>("select * from univerisity_M where Country_id = @Country_id", new { Country_id = countryId }).ToList();
         }
+        public /*IEnumerable<UnivericityModel>*/void  InsertRegeister(RegeisterModel RegeisterDetails)
+        {
+            using IDbConnection db = new SqlConnection(connectionString);
+
+
+            SqlConnection connectionObject = new SqlConnection(connectionString);
+
+            connectionObject.Open();
+            //connectionObject.Execute($"exec InsertPersonalBio '{bio.Name}', '{bio.LastName}',{bio.Age},'{bio.Address}' ");
+
+            connectionObject.Execute($"insert into Regeister values( '{RegeisterDetails.RegeisterName}', '{RegeisterDetails.Country}','{RegeisterDetails.State}','{RegeisterDetails.District}','{RegeisterDetails.City}','{RegeisterDetails.University}')");
+
+            connectionObject.Close();
+
+
+            //return db.Query<UnivericityModel>("select * from univerisity_M ").ToList();
+        }
+
+        public IEnumerable<RegeisterModel1> ReturnAllRegeistration(/*int countryId*/)
+        {
+            using IDbConnection db = new SqlConnection(connectionString);
+            return db.Query<RegeisterModel1>("select * from Regeister").ToList();
+        }
 
     }
 }

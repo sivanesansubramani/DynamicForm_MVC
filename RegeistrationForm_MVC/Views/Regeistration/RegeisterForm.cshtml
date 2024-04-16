@@ -5,7 +5,7 @@
 }
 
 <style>
-    #countryDropdown, #stateDropdown, #districtDropdown, #cityDropdown, #universityDropdown {
+    #countryDropdown,#nametb, #stateDropdown, #districtDropdown, #cityDropdown, #universityDropdown {
     height: 35px;
     max-width: 400px;
 }
@@ -20,22 +20,11 @@
 
 <h1>Form view</h1>
 
-@* 
+<form asp-action="RegeisterForm">
 
+    <label for="nametb">Name</label>
+    <input class="form-control" id="nametb" type="text" placeholder="Default input">
 
-
-
-
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br /> *@
-
-
-<form>
     <div class="form-group">
         <label for="countryDropdown">Country</label>
         <select class="form-control" id="countryDropdown">
@@ -74,9 +63,15 @@
             <option value="">Select University</option>
         </select>
     </div>
+@*     <button type="submit" value="Submit" name="AddPerson" onclick="AddPerson()">Save</button>
+ *@
+    <button type="submit" value="Submit">Save</button>
+
 </form>
 
 
+@*  https://stackoverflow.com/questions/46901534/how-to-get-mvc-button-to-populate-and-display-a-table-after-being-clicked
+ *@
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -87,9 +82,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-        $(function () {
-            $("#countryDropdown").select2();
-        });
+
 
 
     $(document).ready(function () {
@@ -178,120 +171,4 @@
         });
     });
 
-
-
-
 </script>
-
-
-
-@* 
-<!-- JavaScript code -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Event handler for country dropdown change
-        $('#countryDropdown').change(function () {
-            var selectedCountryId = $(this).val();
-
-            // Clear state dropdown
-            $('#stateDropdown').empty().append($('<option>').val('').text('Select State'));
-
-            // Fetch states via AJAX
-            $.ajax({
-                url: '/RegeistrationController/GetStates', // Update the URL to match your controller action
-                type: 'GET',
-                data: { countryId: selectedCountryId },
-                success: function (response) {
-                    // Populate state dropdown with fetched states
-                    $.each(response, function (index, state) {
-                        $('#stateDropdown').append($('<option>').val(state.StateId).text(state.StateName));
-                    });
-                }
-            });
-        });
-    });
-</script> *@
-
-@*  @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Load countries
-            $.ajax({
-                url: '/RegeistrationForm_MVC/GetCountries',
-                type: 'GET',
-                success: function (response) {
-                    $.each(response, function (index, country) {
-                        $('#countryDropdown').append($('<option>').val(country.Id).text(country.Name));
-                    });
-                }
-            });
-        }
-    </script>
-}
-    } *@
-        @*
-            // Handle country change event
-            $('#countryDropdown').change(function () {
-                var countryId = $(this).val();
-                $('#stateDropdown').empty().append($('<option>').val('').text('Select State'));
-                $('#districtDropdown').empty().append($('<option>').val('').text('Select District'));
-                $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
-
-                if (countryId) {
-                    // Load states
-                    $.ajax({
-                        url: '/Location/States?countryId=' + countryId,
-                        type: 'GET',
-                        success: function (response) {
-                            $.each(response, function (index, state) {
-                                $('#stateDropdown').append($('<option>').val(state.Id).text(state.Name));
-                            });
-                        }
-                    });
-                }
-            });
-
-            // Handle state change event
-            $('#stateDropdown').change(function () {
-                var stateId = $(this).val();
-                $('#districtDropdown').empty().append($('<option>').val('').text('Select District'));
-                $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
-
-                if (stateId) {
-                    // Load districts
-                    $.ajax({
-                        url: '/Location/Districts?stateId=' + stateId,
-                        type: 'GET',
-                        success: function (response) {
-                            $.each(response, function (index, district) {
-                                $('#districtDropdown').append($('<option>').val(district.Id).text(district.Name));
-                            });
-                        }
-                    });
-                }
-            });
-
-            // Handle district change event
-            $('#districtDropdown').change(function () {
-                var districtId = $(this).val();
-                $('#cityDropdown').empty().append($('<option>').val('').text('Select City'));
-
-                if (districtId) {
-                    // Load cities
-                    $.ajax({
-                        url: '/Location/Cities?districtId=' + districtId,
-                        type: 'GET',
-                        success: function (response) {
-                            $.each(response, function (index, city) {
-                                $('#cityDropdown').append($('<option>').val(city.Id).text(city.Name));
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-}
- *@

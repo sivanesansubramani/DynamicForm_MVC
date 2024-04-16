@@ -1,6 +1,8 @@
 ﻿using DynamicForm_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using RegeistrationForm_MVC.Models;
 using RegeistrationForm_MVC.Repository;
+using System;
 
 namespace RegeistrationForm_MVC.Controllers
 {
@@ -66,5 +68,31 @@ namespace RegeistrationForm_MVC.Controllers
             var cities = FormData_obj.GetUniversity(countryId);
             return Ok(cities);
         }
+
+        public ActionResult RegeisterForm(RegeisterModel RegeisterDetails)
+        {
+
+           // RegeisterModel RegeisterDetails = new RegeisterModel();
+
+            //RegeisterDetails.RegeisterId = firstName;
+           // RegeisterDetails.RegeisterName = firstName;
+           // RegeisterDetails.Country = firstName;
+           // RegeisterDetails.State = firstName;
+           // RegeisterDetails.District = firstName;
+           // RegeisterDetails.City = firstName;
+           // RegeisterDetails.University = firstName;
+
+
+            if (RegeisterDetails != null)
+            {
+                FormData_obj.InsertRegeister(RegeisterDetails);
+                //Persons.Add(p);
+            }
+
+            var RegeisterDetails1 = FormData_obj.ReturnAllRegeistration();
+
+            return View(RegeisterDetails1);
+        }
+
     }
 }
