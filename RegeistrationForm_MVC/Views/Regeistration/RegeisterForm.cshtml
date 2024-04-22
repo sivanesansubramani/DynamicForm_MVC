@@ -18,10 +18,10 @@
 @{
     ViewData["Title"] = "Location Form";
 }
-
+@* 
 <h1>Form view</h1>
 @* asp-action="RegeisterForm" *@
-<form asp-action="RegeisterFormDetails" method="post">
+@* <form asp-action="RegeisterFormDetails" method="post">
 
     <label for="nametb">Name</label>
     <input class="form-control" id="nametb" type="text" name="RegeisterName" placeholder="Default input">
@@ -67,7 +67,57 @@
 
     <button class="btn btn-primary" type="submit" value="Submit">Save</button>
 
+</form> *@
+
+<h1>Form view</h1>
+
+<form id="yourForm">
+    <label for="nametb">Name</label>
+    <input class="form-control" id="nametb" type="text" name="RegeisterName" placeholder="Enter your name">
+
+    <div class="form-group">
+        <label for="countryDropdown">Country</label>
+        <select name="Country" class="form-control" id="countryDropdown">
+            <option value="">Select Country</option>
+            @foreach (var country in Model)
+            {
+                <option value="@country.CountryCode">@country.CountryName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="stateDropdown">State</label>
+        <select name="State" class="form-control" id="stateDropdown">
+            <option value="">Select State</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="districtDropdown">District</label>
+        <select name="District" class="form-control" id="districtDropdown">
+            <option value="">Select District</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="cityDropdown">City</label>
+        <select name="City" class="form-control" id="cityDropdown">
+            <option value="">Select City</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="universityDropdown">University</label>
+        <select name="University" class="form-control" id="universityDropdown">
+            <option value="">Select University</option>
+        </select>
+    </div>
+
+    <button id="submitButton" class="btn btn-primary" type="button">Save</button>
 </form>
+
+
 
 
 
@@ -83,7 +133,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
+    $(document).ready(function () {
+        $('#submitButton').click(function () {
+            var formData = {
+                RegeisterName: $('#nametb').val(),
+                    Country: $('#countryDropdown option:selected').text(),
+                    State: $('#stateDropdown option:selected').text(),
+                    District: $('#districtDropdown option:selected').text(),
+                    City: $('#cityDropdown option:selected').text(),
+                    University: $('#universityDropdown option:selected').text()
+            };
 
+            $.ajax({
+                type: 'POST',
+                    url: '@Url.Action("RegeisterFormDetails", "Regeistration")',
+                data: formData,
+                success: function (response) {
+                    // Handle success response if needed
+                    console.log('Form submitted successfully.');
+                },
+                error: function (xhr, status, error) {
+                    // Handle error response if needed
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
 
 
     $(document).ready(function () {

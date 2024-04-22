@@ -69,7 +69,7 @@ namespace RegeistrationForm_MVC.Controllers
             return Ok(cities);
         }
 
-        //[HttpPost("RegeisterFormDetails")]
+        [HttpPost("RegeisterFormDetails")]
         public ActionResult RegeisterFormDetails(RegeisterModel RegeisterDetails)
         {
 
