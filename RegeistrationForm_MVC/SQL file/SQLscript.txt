@@ -1,0 +1,63 @@
+﻿USE [FormDB]
+GO
+
+SELECT [CityId]
+      ,[Locality]
+      ,[Zipcode]
+      ,[Districts_M_DistrictId]
+      ,[Countries_M_CountryId]
+      ,[StaStates_M_StateIdte_ID]
+      ,[CreatedDate]
+      ,[CreatedBy]
+      ,[ModifiedDate]
+      ,[ModifiedBy]
+  FROM [dbo].[city]
+
+GO
+
+
+SELECT TOP (1000) [CountryID]
+      ,[CountryName]
+      ,[CountryCode]
+  FROM [FormDB].[dbo].[Country_M]
+
+
+  SELECT TOP (1000) [DistrictId]
+      ,[DistrictName]
+      ,[States_M_StateId]
+      ,[CreatedDate]
+      ,[CreatedBy]
+      ,[ModifiedDate]
+      ,[ModifiedBy]
+  FROM [FormDB].[dbo].[district]
+
+
+
+  SELECT TOP (1000) [RegeisterId]
+      ,[RegeisterName]
+      ,[Country]
+      ,[State]
+      ,[District]
+      ,[City]
+      ,[University]
+  FROM [FormDB].[dbo].[Regeister]
+
+
+
+  SELECT TOP (1000) [StateId]
+      ,[StateName]
+      ,[Countries_M_CountryId]
+      ,[CreatedDate]
+      ,[CreatedBy]
+      ,[ModifiedDate]
+      ,[ModifiedBy]
+  FROM [FormDB].[dbo].[state_M]
+
+
+
+  SELECT TOP (1000) [alpha_two_code]
+      ,[state_province]
+      ,[name]
+      ,[country]
+      ,[Country_id]
+  FROM [FormDB].[dbo].[univerisity_M]
