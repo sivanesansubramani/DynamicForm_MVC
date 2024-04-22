@@ -35,12 +35,12 @@ namespace RegeistrationForm_MVC.Controllers
             //return View();
         }
 
-        //[HttpGet("Countries")]
-        //public IActionResult GetCountries()
-        //{
-        //    var countries = FormData_obj.GetCountries();
-        //    return Ok(countries);
-        //}
+        [HttpGet("Countries")]
+        public IActionResult GetCountries()
+        {
+            var countries = FormData_obj.GetCountries();
+            return Ok(countries);
+        }
 
          [HttpGet("States")]
         public IActionResult GetStates(int countryId)
@@ -69,29 +69,30 @@ namespace RegeistrationForm_MVC.Controllers
             return Ok(cities);
         }
 
-        public ActionResult RegeisterForm(RegeisterModel RegeisterDetails)
+        //[HttpPost("RegeisterFormDetails")]
+        public ActionResult RegeisterFormDetails(RegeisterModel RegeisterDetails)
         {
 
-           // RegeisterModel RegeisterDetails = new RegeisterModel();
+            // RegeisterModel RegeisterDetails = new RegeisterModel();
 
             //RegeisterDetails.RegeisterId = firstName;
-           // RegeisterDetails.RegeisterName = firstName;
-           // RegeisterDetails.Country = firstName;
-           // RegeisterDetails.State = firstName;
-           // RegeisterDetails.District = firstName;
-           // RegeisterDetails.City = firstName;
-           // RegeisterDetails.University = firstName;
+            // RegeisterDetails.RegeisterName = firstName;
+            // RegeisterDetails.Country = firstName;
+            // RegeisterDetails.State = firstName;
+            // RegeisterDetails.District = firstName;
+            // RegeisterDetails.City = firstName;
+            // RegeisterDetails.University = firstName;
 
 
-            if (RegeisterDetails != null)
+            if (RegeisterDetails.RegeisterName != null)
             {
                 FormData_obj.InsertRegeister(RegeisterDetails);
                 //Persons.Add(p);
             }
 
-            var RegeisterDetails1 = FormData_obj.ReturnAllRegeistration();
+            //var RegeisterDetails1 = FormData_obj.ReturnAllRegeistration();
 
-            return View(RegeisterDetails1);
+            return View(RegeisterForm);
         }
 
     }

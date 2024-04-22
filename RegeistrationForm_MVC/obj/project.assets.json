@@ -3357,11 +3357,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ALTIUS\\source\\repos\\sivanesansubramani\\DynamicForm_MVC\\RegeistrationForm_MVC\\RegeistrationForm_MVC.csproj",
+      "projectUniqueName": "C:\\Users\\ALTIUS\\Desktop\\RegeistrationForm_MVC\\RegeistrationForm_MVC\\RegeistrationForm_MVC.csproj",
       "projectName": "RegeistrationForm_MVC",
-      "projectPath": "C:\\Users\\ALTIUS\\source\\repos\\sivanesansubramani\\DynamicForm_MVC\\RegeistrationForm_MVC\\RegeistrationForm_MVC.csproj",
+      "projectPath": "C:\\Users\\ALTIUS\\Desktop\\RegeistrationForm_MVC\\RegeistrationForm_MVC\\RegeistrationForm_MVC.csproj",
       "packagesPath": "C:\\Users\\ALTIUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ALTIUS\\source\\repos\\sivanesansubramani\\DynamicForm_MVC\\RegeistrationForm_MVC\\obj\\",
+      "outputPath": "C:\\Users\\ALTIUS\\Desktop\\RegeistrationForm_MVC\\RegeistrationForm_MVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
